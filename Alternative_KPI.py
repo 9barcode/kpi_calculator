@@ -3,16 +3,16 @@ file_path = input("CSV 파일이 있는 폴더의 경로를 입력하세요: ")
 file_name = input("파일명? : ")
 data = pd.read_csv(f"{file_path}/{file_name}.csv", encoding='ISO-8859-1')
 
-sentence_start = data[data['Payload'].str.contains('setGuideMode:1198', na=False)]
+sentence_start = data[data['Row_1'].str.contains('fetduide:1234', na=False)]
 # print(sentence_start['Timestamp'])
-sentence_data = data[data['Payload'].str.contains(r'\[NVS_GD\] Sentence\[ 0 \] : The route is being calculated', na=False)]
+sentence_data = data[data['Row_1'].str.contains(r'\[ab\] cd\[ 0 \] : calculated', na=False)]
 # print(sentence_data['Timestamp'])
-upstream_data = data[data['Payload'].str.contains(r'#UPSTREAM.*navigation', regex=True, na=False)]
+upstream_data = data[data['Row_1'].str.contains(r'#fg.*df', regex=True, na=False)]
 # print(upstream_data['Timestamp'])
-BE_ID_data = data[data['Payload'].str.contains(r'RoutingSuccess.*INFO.*BE_ID', regex=True, na=False)]
+BE_ID_data = data[data['Row_1'].str.contains(r'dg.*INFO.*sdf', regex=True, na=False)]
 # print(BE_ID_data['Timestamp'])
-search_start = data[data['Payload'].str.contains('NAV_SE_runQuery', na=False)]
-search_end = data[data['Payload'].str.contains('NAV_SE_queryEntries', na=False)]
+search_start = data[data['Row_1'].str.contains('runQuery', na=False)]
+search_end = data[data['Row_1'].str.contains('queryEntries', na=False)]
 
 def safe_diff(a, b):
     try:
@@ -25,43 +25,43 @@ def safe_diff(a, b):
 
 if not sentence_start.empty and not sentence_data.empty and not upstream_data.empty and not BE_ID_data.empty:
     try:
-        first_sentence_start = sentence_start.iloc[0]['Timestamp'] 
+        first_sentence_start = sentence_start.iloc[0]['Row_2'] 
     except IndexError:
         first_sentence_start = None
     try:
-        first_sentence_data = sentence_data.iloc[0]['Timestamp'] 
+        first_sentence_data = sentence_data.iloc[0]['Row_2'] 
     except IndexError:
         first_sentence_data = None
     try:
-        first_upstream_data = upstream_data.iloc[0]['Timestamp'] 
+        first_upstream_data = upstream_data.iloc[0]['Row_2'] 
     except IndexError:
         first_upstream_data = None
     try:    
-        second_upstream_data = upstream_data.iloc[1]['Timestamp'] 
+        second_upstream_data = upstream_data.iloc[1]['Row_2'] 
     except IndexError: 
         second_upstream_data = None
     try:    
-        third_upstream_data = upstream_data.iloc[2]['Timestamp'] 
+        third_upstream_data = upstream_data.iloc[2]['Row_2'] 
     except IndexError:
         third_upstream_data = None
     try: 
-        forth_upstream_data = upstream_data.iloc[3]['Timestamp'] 
+        forth_upstream_data = upstream_data.iloc[3]['Row_2'] 
     except IndexError:
         forth_upstream_data = None
     try :    
-        first_BE_ID_data = BE_ID_data.iloc[0]['Timestamp'] 
+        first_BE_ID_data = BE_ID_data.iloc[0]['Row_2'] 
     except IndexError:
         first_BE_ID_data = None
     try :    
-        second_BE_ID_data = BE_ID_data.iloc[1]['Timestamp'] 
+        second_BE_ID_data = BE_ID_data.iloc[1]['Row_2'] 
     except IndexError:
         second_BE_ID_data = None
     try:    
-        third_BE_ID_data = BE_ID_data.iloc[2]['Timestamp'] 
+        third_BE_ID_data = BE_ID_data.iloc[2]['Row_2'] 
     except IndexError:
         third_BE_ID_data = None
     try:    
-        forth_BE_ID_data = BE_ID_data.iloc[3]['Timestamp'] 
+        forth_BE_ID_data = BE_ID_data.iloc[3]['Row_2'] 
     except IndexError:
         forth_BE_ID_data = None
 
@@ -85,4 +85,4 @@ sum_of_routing_data = sum(values)
     
     
 print(f"sum_of_routing_data:{sum_of_routing_data}")
-print(f"ADR:{time_diff_sentence}")
+print(f"voice:{time_diff_sentence}")

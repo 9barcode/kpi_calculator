@@ -3,7 +3,7 @@ import numpy as np
 from pydlt import DltFileReader
 import os
 
-dlt_file_path = input("Worst case test 후 받은 dlt 경로를 입력하세요 : ").strip()
+dlt_file_path = input("test 후 받은 dlt 경로를 입력하세요 : ").strip()
 csv_file_path = input("csv 파일을 저장할 경로를 입력하세요 : ").strip()
 csv_file_name = os.path.join(csv_file_path, "result.csv")
 
@@ -21,7 +21,7 @@ for idx, file_name in enumerate(dlt_files, start=1):
 
     try:
         for dlt in DltFileReader(full_path):
-            if "cgroup cpu usage" in str(dlt.payload):
+            if "cpu usage" in str(dlt.payload):
                 result.append({
                     "message": dlt.payload
                 })
