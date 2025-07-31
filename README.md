@@ -26,6 +26,7 @@ Pandas 등 실무에서 사용하는 주요 기술을 적용하여 실제 업무
 
 ## 📂 폴더 구조
 
+```plaintext
 kpi_calculator/
 ├── Alternative_KPI.py
 ├── Convert_to_csv.py
@@ -38,6 +39,8 @@ kpi_calculator/
 ├── Search_KPI.py
 ├── Startup_KPI.py
 └── README.md
+```
+
 
 🎯 개발 배경
 해당 도구는 실제 차량 내비게이션 QA 업무 중
